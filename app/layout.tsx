@@ -28,7 +28,7 @@ const SITE_URL = "https://www.saguarocomunicacao.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Saguaro Comunicação — Laboratório de desenvolvimento digital",
+    default: "Saguaro Comunicação - Laboratório de desenvolvimento digital",
     template: "%s · Saguaro Comunicação",
   },
   description:
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: SITE_URL,
     siteName: "Saguaro Comunicação",
-    title: "Saguaro Comunicação — Laboratório de desenvolvimento digital",
+    title: "Saguaro Comunicação - Laboratório de desenvolvimento digital",
     description:
       "Sites, aplicativos e sistemas sob medida. Nada engessado: customização, segurança e modernidade.",
   },

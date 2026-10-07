@@ -22,7 +22,7 @@ const jsonLd = {
   telephone: "+5548991884139",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Rua Vidal Ramos, 140 — Sala 1007",
+    streetAddress: "Rua Vidal Ramos, 140, Sala 1007",
     addressLocality: "Florianópolis",
     addressRegion: "SC",
     addressCountry: "BR",

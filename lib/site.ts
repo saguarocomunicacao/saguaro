@@ -4,7 +4,7 @@ export const site = {
   fullName: "Saguaro Comunicação",
   phoneDisplay: "+55 (48) 99188-4139",
   phoneRaw: "5548991884139",
-  address: "Rua Vidal Ramos, 140 — Sala 1007, Centro, Florianópolis/SC",
+  address: "Rua Vidal Ramos, 140, Sala 1007, Centro, Florianópolis/SC",
   instagram: "https://instagram.com/saguarocomunicacao",
   facebook: "https://facebook.com/saguarocomunicacao",
   instagramHandle: "@saguarocomunicacao",
