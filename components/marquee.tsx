@@ -6,7 +6,7 @@ const items = [
   "Aplicativos",
   "Sistemas sob medida",
   "E-commerce",
-  "Saguaro CMS",
+  "CMS personalizado",
   "UX / UI Design",
   "Suporte 24/7",
 ];

@@ -26,6 +26,11 @@ export function CMS() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
         <div>
           <Reveal>
+            <p className="mb-5 flex items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.2em] text-accent">
+              <span className="h-px w-10 bg-accent" />Incluso em todo projeto
+            </p>
+          </Reveal>
+          <Reveal>
             <h2 className="font-display pb-1 text-4xl font-bold leading-[1.1] tracking-[-0.02em] sm:text-5xl md:text-[3.5rem]">
               Publique sem{" "}
               <span className="text-accent italic">pedir licença.</span>
@@ -33,9 +38,9 @@ export function CMS() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-              O Saguaro CMS é o nosso sistema próprio de gestão de conteúdo. Ele
-              vem junto com o seu projeto para você ter autonomia total no dia a
-              dia.
+              Todo site e sistema que a gente entrega já vem com um CMS feito sob
+              medida para você. Um painel próprio para editar textos, imagens e
+              páginas sozinho, com autonomia total no dia a dia.
             </p>
           </Reveal>
 
@@ -53,7 +58,7 @@ export function CMS() {
           <Reveal delay={0.5} className="mt-10">
             <Magnetic>
               <LinkButton
-                href={whatsappLink("Olá, Saguaro! Quero conhecer o Saguaro CMS.")}
+                href={whatsappLink("Olá, Saguaro! Quero um site com CMS personalizado.")}
                 external
                 size="lg"
               >
@@ -71,7 +76,7 @@ export function CMS() {
               <span className="h-2.5 w-2.5 rounded-full bg-muted/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
               <span className="ml-3 font-mono text-[0.7rem] text-faint">
-                saguaro-cms
+                seu-site / cms
               </span>
             </div>
 

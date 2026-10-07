@@ -39,8 +39,8 @@ const services = [
   },
   {
     n: "06",
-    title: "Saguaro CMS",
-    desc: "Nosso sistema próprio de gestão de conteúdo. Autonomia total, sem depender de ninguém.",
+    title: "CMS personalizado",
+    desc: "Todo site que fazemos já vem com um CMS feito pra você. Edite tudo sozinho, sem depender de ninguém.",
     href: "#cms",
   },
 ];

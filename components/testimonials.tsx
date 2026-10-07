@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     quote:
-      "Pela primeira vez consigo atualizar o meu site sozinha. O Saguaro CMS mudou a minha rotina.",
+      "Pela primeira vez consigo atualizar o meu site sozinha. O CMS mudou a minha rotina.",
     name: "Regina",
     role: "Clínica",
     offset: "lg:mt-16",

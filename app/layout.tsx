@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "desenvolvimento de sites",
     "aplicativos sob medida",
     "sistemas personalizados",
-    "Saguaro CMS",
+    "CMS personalizado",
     "agência digital Florianópolis",
     "UX UI design",
     "e-commerce",

@@ -20,7 +20,7 @@ export function whatsappLink(message?: string) {
 
 export const nav = [
   { label: "Soluções", href: "#solucoes" },
-  { label: "Saguaro CMS", href: "#cms" },
+  { label: "CMS", href: "#cms" },
   { label: "Processo", href: "#processo" },
   { label: "Por que Saguaro", href: "#porque" },
   { label: "Contato", href: "#contato" },
