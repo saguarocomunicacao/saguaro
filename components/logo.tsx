@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 
-// Marca geométrica da Saguaro: um cacto saguaro estilizado + wordmark.
+// Logotipo oficial da Saguaro (cacto) + wordmark opcional.
 export function Logo({
   className = "",
   showWordmark = true,
@@ -10,7 +10,7 @@ export function Logo({
 }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <SaguaroMark className="h-7 w-7 shrink-0" />
+      <SaguaroMark className="h-8 w-8 shrink-0" alt="Saguaro" />
       {showWordmark && (
         <span className="font-display text-[1.15rem] font-bold tracking-tight text-ink">
           {site.name}
@@ -21,29 +21,26 @@ export function Logo({
   );
 }
 
-export function SaguaroMark({ className = "" }: { className?: string }) {
+/*
+  Marca saguaro a partir do PNG oficial (public/logo.png).
+  - silhouette: renderiza em preto (para uso sobre o bloco de cor verde).
+  - alt vazio por padrão (uso decorativo); passe alt quando for o logo real.
+*/
+export function SaguaroMark({
+  className = "",
+  silhouette = false,
+  alt = "",
+}: {
+  className?: string;
+  silhouette?: boolean;
+  alt?: string;
+}) {
   return (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-      role="img"
-    >
-      {/* braços e tronco do saguaro, traço arredondado */}
-      <g
-        stroke="currentColor"
-        className="text-accent"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M24 44V12" />
-        <path d="M24 26c0-5.5-1-8-5-8s-5 2.5-5 8v3c0 3 1.6 4.6 5 4.6" />
-        <path d="M24 22c0-6 1-9 5.5-9S35 16 35 22v6c0 3.2-1.8 5-5.5 5" />
-      </g>
-      {/* flor no topo */}
-      <circle cx="24" cy="9" r="3.2" className="fill-accent" />
-    </svg>
+    <img
+      src="/logo.png"
+      alt={alt}
+      aria-hidden={alt ? undefined : true}
+      className={`${silhouette ? "brightness-0" : ""} ${className}`}
+    />
   );
 }

@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="relative overflow-hidden">
       {/* bloco de cor forte: único momento claro da página (color-block editorial) */}
       <div className="relative overflow-hidden bg-accent text-[#0c1206]">
-        <SaguaroMark className="pointer-events-none absolute -right-10 -top-16 h-72 w-72 text-[#0c1206] opacity-[0.07]" />
+        <SaguaroMark silhouette className="pointer-events-none absolute -right-10 -top-16 h-72 w-72 opacity-[0.08]" />
         <div className="relative mx-auto flex max-w-[1400px] flex-col items-start gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:flex-row lg:items-end lg:justify-between">
           <h2 className="font-display max-w-2xl text-[clamp(2.5rem,7vw,6rem)] font-extrabold leading-[0.9] tracking-[-0.03em]">
             Pronto para algo <span className="italic text-coral">único?</span>
