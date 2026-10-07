@@ -38,7 +38,7 @@ export function Nav() {
       <div
         className={`mx-auto flex h-[68px] max-w-[1400px] items-center justify-between px-5 transition-all duration-300 sm:px-8 ${
           scrolled
-            ? "mt-2 rounded-full border border-line bg-bg/70 backdrop-blur-xl sm:mx-6"
+            ? "mt-2 rounded-full border border-line bg-bg/70 backdrop-blur-xl"
             : "border border-transparent"
         }`}
       >
