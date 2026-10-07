@@ -68,17 +68,17 @@ export function Hero() {
 
         {/* headline editorial gigante, quebrando a grade */}
         <h1 className="font-display font-extrabold leading-[0.86] tracking-[-0.04em]">
-          <span className="block text-[clamp(3rem,11vw,10rem)]">
-            <Word i={0}>Nada</Word>
-            <Word i={1}>de</Word>
-            <Word i={2}>pronto.</Word>
-          </span>
-          <span className="block pl-[0.5em] text-[clamp(3rem,11vw,10rem)]">
-            <Word i={3}>Tudo</Word>
-            <Word i={4}>sob</Word>
-            <Word i={5} italic>
-              medida.
+          <span className="block text-[clamp(2.5rem,8vw,7rem)]">
+            <Word i={0}>Tudo</Word>
+            <Word i={1}>sob</Word>
+            <Word i={2} italic>
+              medida
             </Word>
+          </span>
+          <span className="block pl-[0.5em] text-[clamp(2.5rem,8vw,7rem)]">
+            <Word i={3}>Feito</Word>
+            <Word i={4}>para</Word>
+            <Word i={5}>você.</Word>
           </span>
         </h1>
 

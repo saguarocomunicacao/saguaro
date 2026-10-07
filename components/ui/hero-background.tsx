@@ -3,82 +3,23 @@
 import { useEffect, useRef } from "react";
 
 /*
-  Campo de fluxo (flow field): milhares de partículas seguem um campo de
-  ruído que evolui no tempo, deixando rastros de luz. É arte generativa /
-  computacional - a linguagem de um laboratório de desenvolvimento: dados,
-  algoritmos e código em movimento. Monocromático: verde-saguaro sobre preto.
+  Rede de nós (constellation network): pontos de dados que derivam e se
+  conectam por linhas quando próximos. O cursor vira um nó que atrai e
+  acende as conexões ao redor. É a linguagem visual de tecnologia:
+  sistemas, redes e dados conectados - a cara de um laboratório de dev.
+  Monocromático: verde-saguaro + branco sobre preto.
 
-  - Canvas 2D (leve, sem WebGL).
-  - Partículas são desviadas pelo cursor (repulsão suave).
+  - Canvas 2D, limpo a cada quadro (rede nítida).
   - prefers-reduced-motion: desenha um único quadro estático.
-  - Cleanup completo no unmount; devicePixelRatio limitado.
+  - devicePixelRatio limitado; cleanup completo no unmount.
 */
 
-// --- simplex noise 3D (Stefan Gustavson, domínio público; compacto) ---
-const grad3 = [
-  [1, 1, 0], [-1, 1, 0], [1, -1, 0], [-1, -1, 0],
-  [1, 0, 1], [-1, 0, 1], [1, 0, -1], [-1, 0, -1],
-  [0, 1, 1], [0, -1, 1], [0, 1, -1], [0, -1, -1],
-];
-function buildPerm() {
-  const p = new Uint8Array(256);
-  for (let i = 0; i < 256; i++) p[i] = i;
-  for (let i = 255; i > 0; i--) {
-    const n = Math.floor(Math.random() * (i + 1));
-    [p[i], p[n]] = [p[n], p[i]];
-  }
-  const perm = new Uint8Array(512);
-  const permMod12 = new Uint8Array(512);
-  for (let i = 0; i < 512; i++) {
-    perm[i] = p[i & 255];
-    permMod12[i] = perm[i] % 12;
-  }
-  return { perm, permMod12 };
-}
-function makeNoise3() {
-  const { perm, permMod12 } = buildPerm();
-  const F3 = 1 / 3;
-  const G3 = 1 / 6;
-  return function noise(x: number, y: number, z: number) {
-    let n0, n1, n2, n3;
-    const s = (x + y + z) * F3;
-    const i = Math.floor(x + s);
-    const j = Math.floor(y + s);
-    const k = Math.floor(z + s);
-    const t = (i + j + k) * G3;
-    const x0 = x - (i - t);
-    const y0 = y - (j - t);
-    const z0 = z - (k - t);
-    let i1, j1, k1, i2, j2, k2;
-    if (x0 >= y0) {
-      if (y0 >= z0) { i1 = 1; j1 = 0; k1 = 0; i2 = 1; j2 = 1; k2 = 0; }
-      else if (x0 >= z0) { i1 = 1; j1 = 0; k1 = 0; i2 = 1; j2 = 0; k2 = 1; }
-      else { i1 = 0; j1 = 0; k1 = 1; i2 = 1; j2 = 0; k2 = 1; }
-    } else {
-      if (y0 < z0) { i1 = 0; j1 = 0; k1 = 1; i2 = 0; j2 = 1; k2 = 1; }
-      else if (x0 < z0) { i1 = 0; j1 = 1; k1 = 0; i2 = 0; j2 = 1; k2 = 1; }
-      else { i1 = 0; j1 = 1; k1 = 0; i2 = 1; j2 = 1; k2 = 0; }
-    }
-    const x1 = x0 - i1 + G3, y1 = y0 - j1 + G3, z1 = z0 - k1 + G3;
-    const x2 = x0 - i2 + 2 * G3, y2 = y0 - j2 + 2 * G3, z2 = z0 - k2 + 2 * G3;
-    const x3 = x0 - 1 + 3 * G3, y3 = y0 - 1 + 3 * G3, z3 = z0 - 1 + 3 * G3;
-    const ii = i & 255, jj = j & 255, kk = k & 255;
-    const calc = (gi: number, xx: number, yy: number, zz: number) => {
-      let tt = 0.6 - xx * xx - yy * yy - zz * zz;
-      if (tt < 0) return 0;
-      const g = grad3[gi];
-      tt *= tt;
-      return tt * tt * (g[0] * xx + g[1] * yy + g[2] * zz);
-    };
-    n0 = calc(permMod12[ii + perm[jj + perm[kk]]], x0, y0, z0);
-    n1 = calc(permMod12[ii + i1 + perm[jj + j1 + perm[kk + k1]]], x1, y1, z1);
-    n2 = calc(permMod12[ii + i2 + perm[jj + j2 + perm[kk + k2]]], x2, y2, z2);
-    n3 = calc(permMod12[ii + 1 + perm[jj + 1 + perm[kk + 1]]], x3, y3, z3);
-    return 32 * (n0 + n1 + n2 + n3);
-  };
-}
+type Node = { x: number; y: number; vx: number; vy: number; white: boolean; r: number };
 
-type P = { x: number; y: number; life: number; max: number; white: boolean };
+const GREEN = "154,214,79";
+const WHITE = "245,245,244";
+const LINK_DIST = 150;
+const MOUSE_DIST = 220;
 
 export function HeroBackground({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -91,24 +32,21 @@ export function HeroBackground({ className = "" }: { className?: string }) {
     const ctx: CanvasRenderingContext2D = ctx2d;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const noise = makeNoise3();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     let W = 0;
     let H = 0;
-    let particles: P[] = [];
-    const NOISE_SCALE = 0.0016;
-    const TIME_SCALE = 0.00016;
-    const SPEED = 1.3;
+    let nodes: Node[] = [];
     const mouse = { x: -9999, y: -9999 };
 
-    function spawn(): P {
+    function makeNode(): Node {
       return {
         x: Math.random() * W,
         y: Math.random() * H,
-        life: Math.random() * 240,
-        max: 160 + Math.random() * 220,
-        white: Math.random() < 0.08,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        white: Math.random() < 0.12,
+        r: 1.4 + Math.random() * 1.2,
       };
     }
 
@@ -118,65 +56,85 @@ export function HeroBackground({ className = "" }: { className?: string }) {
       el.width = Math.floor(W * dpr);
       el.height = Math.floor(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#0a0a0a";
-      ctx.fillRect(0, 0, W, H);
-      const count = Math.min(2200, Math.floor((W * H) / 1000));
-      particles = Array.from({ length: count }, spawn);
+      const count = Math.min(150, Math.max(50, Math.floor((W * H) / 15000)));
+      nodes = Array.from({ length: count }, makeNode);
     }
 
-    function step(time: number) {
-      // leve fade para criar rastros (quanto menor o alpha, mais longos)
-      ctx.fillStyle = "rgba(10,10,10,0.04)";
+    function draw() {
+      ctx.fillStyle = "#0a0a0a";
       ctx.fillRect(0, 0, W, H);
 
-      for (const p of particles) {
-        const angle =
-          noise(p.x * NOISE_SCALE, p.y * NOISE_SCALE, time * TIME_SCALE) *
-          Math.PI *
-          2.2;
-        let vx = Math.cos(angle) * SPEED;
-        let vy = Math.sin(angle) * SPEED;
+      // move + bounce
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
 
-        // repulsão suave do cursor
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 150 * 150) {
-          const d = Math.sqrt(d2) || 1;
-          const f = (1 - d / 150) * 2.2;
-          vx += (dx / d) * f;
-          vy += (dy / d) * f;
+        // leve atração em direção ao cursor
+        const dxm = mouse.x - n.x;
+        const dym = mouse.y - n.y;
+        const dm2 = dxm * dxm + dym * dym;
+        if (dm2 < MOUSE_DIST * MOUSE_DIST) {
+          const dm = Math.sqrt(dm2) || 1;
+          const f = (1 - dm / MOUSE_DIST) * 0.25;
+          n.x += (dxm / dm) * f;
+          n.y += (dym / dm) * f;
         }
+      }
 
-        const nx = p.x + vx;
-        const ny = p.y + vy;
-
-        if (p.white) {
-          ctx.strokeStyle = "rgba(245,245,244,0.32)";
-          ctx.lineWidth = 1.2;
-        } else {
-          ctx.strokeStyle = "rgba(154,214,79,0.42)";
-          ctx.lineWidth = 1.1;
+      // linhas entre nós próximos
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < LINK_DIST * LINK_DIST) {
+            const d = Math.sqrt(d2);
+            const alpha = (1 - d / LINK_DIST) * 0.22;
+            ctx.strokeStyle = `rgba(${GREEN},${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
         }
+      }
+
+      // linhas do cursor para os nós próximos (mais acesas)
+      if (mouse.x > -9000) {
+        for (const n of nodes) {
+          const dx = n.x - mouse.x;
+          const dy = n.y - mouse.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < MOUSE_DIST * MOUSE_DIST) {
+            const d = Math.sqrt(d2);
+            const alpha = (1 - d / MOUSE_DIST) * 0.5;
+            ctx.strokeStyle = `rgba(${GREEN},${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+            ctx.lineTo(n.x, n.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // nós
+      for (const n of nodes) {
+        ctx.fillStyle = n.white ? `rgba(${WHITE},0.9)` : `rgba(${GREEN},0.85)`;
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(nx, ny);
-        ctx.stroke();
-
-        p.x = nx;
-        p.y = ny;
-        p.life++;
-
-        if (p.x < -10 || p.x > W + 10 || p.y < -10 || p.y > H + 10 || p.life > p.max) {
-          Object.assign(p, spawn());
-          p.life = 0;
-        }
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
     let raf = 0;
-    function frame(t: number) {
-      step(t);
+    function frame() {
+      draw();
       raf = requestAnimationFrame(frame);
     }
 
@@ -194,8 +152,7 @@ export function HeroBackground({ className = "" }: { className?: string }) {
     window.addEventListener("resize", resize);
 
     if (reduce) {
-      // quadro estático: algumas passadas curtas do campo
-      for (let i = 0; i < 90; i++) step(1000 + i * 16);
+      draw();
     } else {
       window.addEventListener("mousemove", onMouse, { passive: true });
       window.addEventListener("mouseleave", onLeave);
