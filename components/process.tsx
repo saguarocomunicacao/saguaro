@@ -69,7 +69,7 @@ export function Process() {
       <div className="mx-auto mb-12 max-w-[1400px] px-5 sm:mb-16 sm:px-8">
         <Reveal>
           <h2 className="font-display max-w-4xl text-[clamp(2.25rem,6vw,4.75rem)] font-bold leading-[0.98] tracking-[-0.03em]">
-            Do briefing ao <span className="text-coral">no ar</span>, sem
+            Do briefing ao <span className="text-accent">no ar</span>, sem
             caixa-preta.
           </h2>
         </Reveal>

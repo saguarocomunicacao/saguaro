@@ -50,7 +50,7 @@ export function Contact() {
           <Reveal>
             <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[0.95] tracking-[-0.03em]">
               Vamos tirar o seu projeto{" "}
-              <span className="text-coral">do papel?</span>
+              <span className="text-accent">do papel?</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -216,7 +216,7 @@ function Field({
 }) {
   const base =
     "w-full rounded-xl border bg-bg px-4 py-3 text-ink placeholder:text-faint outline-none transition-colors focus:border-accent/60 focus:ring-2 focus:ring-accent/25";
-  const border = error ? "border-clay" : "border-line";
+  const border = error ? "border-ink/60" : "border-line";
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="text-sm font-medium text-ink/90">
@@ -241,7 +241,7 @@ function Field({
           className={`${base} ${border}`}
         />
       )}
-      {error && <span className="text-sm text-clay">{error}</span>}
+      {error && <span className="text-sm text-ink/75">{error}</span>}
     </div>
   );
 }

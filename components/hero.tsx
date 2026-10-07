@@ -4,7 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react";
 import { Magnetic } from "./ui/magnetic";
 import { LinkButton } from "./ui/button";
-import { WebglBackground } from "./ui/webgl-background";
+import { HeroBackground } from "./ui/hero-background";
 import { SaguaroMark } from "./logo";
 import { PRIMARY_CTA, whatsappLink } from "@/lib/site";
 
@@ -19,7 +19,7 @@ function Word({ children, i, accent, italic }: { children: string; i: number; ac
         initial={reduce ? false : { y: "110%", rotate: 4 }}
         animate={{ y: "0%", rotate: 0 }}
         transition={{ duration: 0.9, delay: 0.15 + i * 0.08, ease: EASE }}
-        className={`inline-block ${accent ? "text-accent" : ""} ${italic ? "italic text-coral" : ""}`}
+        className={`inline-block ${accent ? "text-accent" : ""} ${italic ? "italic text-accent" : ""}`}
       >
         {children}
       </motion.span>
@@ -45,7 +45,7 @@ export function Hero() {
       className="relative flex min-h-[100dvh] items-center overflow-hidden"
     >
       {/* fundo WebGL vivo, visível imediatamente */}
-      <WebglBackground className="absolute inset-0 h-full w-full" />
+      <HeroBackground className="absolute inset-0 h-full w-full" />
       {/* véu inferior para transição ao conteúdo seguinte */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-bg via-bg/60 to-transparent" />
 

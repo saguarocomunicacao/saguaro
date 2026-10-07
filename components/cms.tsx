@@ -67,8 +67,8 @@ export function CMS() {
         <Reveal delay={0.15}>
           <div className="relative mx-auto w-full max-w-md rounded-panel border border-line bg-bg p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
             <div className="mb-5 flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-clay/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-sand/70" />
+              <span className="h-2.5 w-2.5 rounded-full bg-faint" />
+              <span className="h-2.5 w-2.5 rounded-full bg-muted/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
               <span className="ml-3 font-mono text-[0.7rem] text-faint">
                 saguaro-cms

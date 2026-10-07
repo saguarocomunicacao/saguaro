@@ -35,7 +35,7 @@ export function Services() {
         </p>
         <h2 className="font-display max-w-4xl text-[clamp(2.25rem,6vw,4.75rem)] font-bold leading-[0.98] tracking-[-0.03em]">
           Soluções que a gente{" "}
-          <span className="text-coral">tira do papel.</span>
+          <span className="text-accent">tira do papel.</span>
         </h2>
       </Parallax>
 
@@ -47,7 +47,7 @@ export function Services() {
             className="group relative flex h-full min-h-[340px] flex-col justify-between overflow-hidden rounded-panel border border-line p-8 transition-colors hover:border-accent/50 sm:p-10"
             style={{
               background:
-                "linear-gradient(135deg, rgba(154,214,79,0.14), rgba(20,17,9,0.2) 50%), var(--color-surface)",
+                "linear-gradient(135deg, rgba(154,214,79,0.14), rgba(10,10,10,0.3) 50%), var(--color-surface)",
             }}
           >
             <SaguaroMark className="absolute -right-8 -top-10 h-64 w-64 text-ink opacity-[0.06]" />
@@ -75,10 +75,10 @@ export function Services() {
           <motion.a
             {...enter(5)}
             href="#cms"
-            className="group relative flex h-full items-center justify-between gap-6 overflow-hidden rounded-panel border border-line p-8 transition-colors hover:border-coral/50 sm:p-10"
+            className="group relative flex h-full items-center justify-between gap-6 overflow-hidden rounded-panel border border-line p-8 transition-colors hover:border-accent/50 sm:p-10"
             style={{
               background:
-                "radial-gradient(130% 150% at 100% 0%, rgba(224,107,67,0.14), transparent 55%), var(--color-surface)",
+                "radial-gradient(130% 150% at 100% 0%, rgba(154,214,79,0.12), transparent 55%), var(--color-surface)",
             }}
           >
             <div>
@@ -90,7 +90,7 @@ export function Services() {
                 tudo sozinho, sem depender de ninguém.
               </p>
             </div>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-line text-coral transition-all group-hover:border-coral/60 group-hover:bg-coral group-hover:text-[#1a0d08]">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-line text-accent transition-all group-hover:border-accent/60 group-hover:bg-accent group-hover:text-[#0c1206]">
               <ArrowRight weight="bold" className="h-5 w-5" />
             </span>
           </motion.a>
@@ -122,7 +122,7 @@ function ServiceCard({
         className="group flex h-full min-h-[210px] flex-col justify-between rounded-panel border border-line p-7 transition-colors hover:border-accent/50"
         style={
           tinted
-            ? { background: "linear-gradient(160deg, rgba(224,107,67,0.1), var(--color-surface) 60%)" }
+            ? { background: "linear-gradient(160deg, rgba(154,214,79,0.08), var(--color-surface) 60%)" }
             : { background: "var(--color-surface)" }
         }
       >

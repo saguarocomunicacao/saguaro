@@ -6,19 +6,17 @@
   Raio: painéis 18px, botões pill, inputs 12px.
 */
 @theme {
-  --color-bg: #0b0a08;
-  --color-surface: #141109;
-  --color-surface-2: #1b1710;
-  --color-line: #2a2419;
-  --color-ink: #f4f1ea;
-  --color-muted: #a39b8b;
-  --color-faint: #6f6757;
+  /* Paleta monocromática: preto neutro + branco + verde-saguaro. Sem tons quentes. */
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-2: #1c1c1c;
+  --color-line: #282828;
+  --color-ink: #f5f5f4;
+  --color-muted: #a1a1a1;
+  --color-faint: #6b6b6b;
 
   --color-accent: #9ad64f;
-  --color-accent-deep: #5f9a30;
-  --color-sand: #e2a24c;
-  --color-coral: #e06b43;
-  --color-clay: #c06a3f;
+  --color-accent-deep: #6aa832;
 
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
@@ -69,12 +67,12 @@ body {
   background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2f2819;
+  background: #2d2d2d;
   border-radius: 999px;
   border: 2px solid var(--color-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3d3421;
+  background: #3a3a3a;
 }
 
 .font-display {
@@ -130,10 +128,3 @@ body {
   }
 }
 
-/* Texto com leve gradiente quente no accent, usado com parcimônia */
-.text-ember {
-  background: linear-gradient(100deg, var(--color-ink) 0%, var(--color-sand) 60%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}

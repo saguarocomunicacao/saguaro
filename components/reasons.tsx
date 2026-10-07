@@ -47,7 +47,7 @@ export function Reasons() {
             <Reveal>
               <h2 className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
                 Seis motivos para{" "}
-                <span className="text-coral">fugir do engessado.</span>
+                <span className="text-accent">fugir do engessado.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
