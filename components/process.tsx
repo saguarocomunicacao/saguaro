@@ -163,8 +163,8 @@ export function Process() {
       </Reveal>
 
       <div ref={ref} className="relative">
-        {/* linha conectora (desktop) com preenchimento verde conforme o scroll */}
-        <div className="pointer-events-none absolute left-0 right-0 top-12 hidden h-px bg-line md:block">
+        {/* linha conectora (desktop): do centro do 1º nó ao centro do último (1/8 de cada lado) */}
+        <div className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-12 hidden h-px bg-line md:block">
           <motion.div
             style={{ scaleX: reduce ? 1 : lineScale }}
             className="h-full w-full origin-left bg-accent"
