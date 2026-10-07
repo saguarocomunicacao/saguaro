@@ -40,7 +40,7 @@ export function Contact() {
   return (
     <section
       id="contato"
-      className="relative scroll-mt-24 overflow-hidden py-20 sm:py-32"
+      className="relative scroll-mt-24 overflow-hidden py-14 sm:py-20"
     >
       <Aurora className="opacity-60" />
       <div className="pointer-events-none absolute inset-0 bg-bg/40" />

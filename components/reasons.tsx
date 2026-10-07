@@ -39,7 +39,7 @@ export function Reasons() {
   return (
     <section
       id="porque"
-      className="mx-auto max-w-[1400px] scroll-mt-24 px-5 py-20 sm:px-8 sm:py-32"
+      className="mx-auto max-w-[1400px] scroll-mt-24 px-5 py-14 sm:px-8 sm:py-20"
     >
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">

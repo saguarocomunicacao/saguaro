@@ -29,7 +29,7 @@ const pillars = [
 
 export function Pillars() {
   return (
-    <section className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
+    <section className="mx-auto max-w-[1400px] px-5 py-14 sm:px-8 sm:py-18">
       <div className="grid grid-cols-1 gap-px overflow-hidden rounded-panel border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {pillars.map((p, i) => (
           <Reveal

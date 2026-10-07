@@ -33,7 +33,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden border-y border-line bg-surface/40 py-20 sm:py-32">
+    <section className="relative overflow-hidden border-y border-line bg-surface/40 py-14 sm:py-20">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <h2 className="font-display mb-14 max-w-4xl text-[clamp(2.25rem,6vw,4.75rem)] font-bold leading-[0.98] tracking-[-0.03em] sm:mb-20">

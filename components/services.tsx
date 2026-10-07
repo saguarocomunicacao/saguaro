@@ -27,7 +27,7 @@ export function Services() {
   return (
     <section
       id="solucoes"
-      className="relative mx-auto max-w-[1400px] scroll-mt-24 px-5 py-24 sm:px-8 sm:py-36"
+      className="relative mx-auto max-w-[1400px] scroll-mt-24 px-5 py-14 sm:px-8 sm:py-22"
     >
       <Parallax amount={40} className="mb-14 sm:mb-20">
         <p className="mb-5 flex items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.2em] text-accent">

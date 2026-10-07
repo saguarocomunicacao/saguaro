@@ -21,7 +21,7 @@ export function CMS() {
   return (
     <section
       id="cms"
-      className="relative scroll-mt-24 border-y border-line bg-surface/40 py-20 sm:py-32"
+      className="relative scroll-mt-24 border-y border-line bg-surface/40 py-14 sm:py-20"
     >
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
         <div>
