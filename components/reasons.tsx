@@ -45,8 +45,9 @@ export function Reasons() {
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28">
             <Reveal>
-              <h2 className="font-display text-4xl font-bold leading-[1.02] tracking-[-0.02em] sm:text-5xl md:text-6xl">
-                Seis motivos para fugir do engessado.
+              <h2 className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.03em]">
+                Seis motivos para{" "}
+                <span className="text-coral">fugir do engessado.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>

@@ -1,29 +1,37 @@
 "use client";
 
 import { InstagramLogo, FacebookLogo, WhatsappLogo, ArrowUp } from "@phosphor-icons/react";
-import { Logo } from "./logo";
+import { Logo, SaguaroMark } from "./logo";
 import { nav, site, PRIMARY_CTA, whatsappLink } from "@/lib/site";
-import { LinkButton } from "./ui/button";
 import { Magnetic } from "./ui/magnetic";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-surface/30">
-      {/* bloco de chamada final */}
-      <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-line pb-14 md:flex-row md:items-center">
-          <p className="font-display max-w-xl text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl">
-            Pronto para algo <span className="text-accent italic">único?</span>
-          </p>
+    <footer className="relative overflow-hidden">
+      {/* bloco de cor forte: único momento claro da página (color-block editorial) */}
+      <div className="relative overflow-hidden bg-accent text-[#0c1206]">
+        <SaguaroMark className="pointer-events-none absolute -right-10 -top-16 h-72 w-72 text-[#0c1206] opacity-[0.07]" />
+        <div className="relative mx-auto flex max-w-[1400px] flex-col items-start gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:flex-row lg:items-end lg:justify-between">
+          <h2 className="font-display max-w-2xl text-[clamp(2.5rem,7vw,6rem)] font-extrabold leading-[0.9] tracking-[-0.03em]">
+            Pronto para algo <span className="italic text-coral">único?</span>
+          </h2>
           <Magnetic>
-            <LinkButton href={whatsappLink()} external size="lg">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0c1206] px-8 py-4 text-base font-medium text-accent transition-transform active:translate-y-px"
+            >
               {PRIMARY_CTA}
-            </LinkButton>
+              <ArrowUp weight="bold" className="h-4 w-4 rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </Magnetic>
         </div>
+      </div>
 
-        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-4">
+      <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+        <div className="grid grid-cols-2 gap-10 border-t border-line pt-14 pb-14 md:grid-cols-4">
           <div className="col-span-2 md:col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">

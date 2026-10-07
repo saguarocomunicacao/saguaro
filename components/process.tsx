@@ -68,8 +68,9 @@ export function Process() {
     <section id="processo" className="scroll-mt-24 py-20 sm:py-28">
       <div className="mx-auto mb-12 max-w-[1400px] px-5 sm:mb-16 sm:px-8">
         <Reveal>
-          <h2 className="font-display max-w-3xl text-4xl font-bold leading-[1.02] tracking-[-0.02em] sm:text-5xl md:text-6xl">
-            Do briefing ao no ar, sem caixa-preta.
+          <h2 className="font-display max-w-4xl text-[clamp(2.25rem,6vw,4.75rem)] font-bold leading-[0.98] tracking-[-0.03em]">
+            Do briefing ao <span className="text-coral">no ar</span>, sem
+            caixa-preta.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>

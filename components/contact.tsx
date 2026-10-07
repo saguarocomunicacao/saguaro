@@ -49,7 +49,8 @@ export function Contact() {
         <div>
           <Reveal>
             <h2 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[0.95] tracking-[-0.03em]">
-              Vamos tirar o seu projeto do papel?
+              Vamos tirar o seu projeto{" "}
+              <span className="text-coral">do papel?</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>

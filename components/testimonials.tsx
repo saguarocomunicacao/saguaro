@@ -36,8 +36,8 @@ export function Testimonials() {
     <section className="relative overflow-hidden border-y border-line bg-surface/40 py-20 sm:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <Reveal>
-          <h2 className="font-display mb-14 max-w-3xl text-4xl font-bold leading-[1.02] tracking-[-0.02em] sm:mb-20 sm:text-5xl md:text-6xl">
-            Quem tirou do papel com a gente.
+          <h2 className="font-display mb-14 max-w-4xl text-[clamp(2.25rem,6vw,4.75rem)] font-bold leading-[0.98] tracking-[-0.03em] sm:mb-20">
+            Quem <span className="text-coral">tirou do papel</span> com a gente.
           </h2>
         </Reveal>
 

@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/lib/site";
 
 const jsonLd = {
@@ -40,18 +41,20 @@ export default function Home() {
       />
       <ScrollProgress />
       <Nav />
-      <main>
-        <Hero />
-        <Marquee />
-        <Pillars />
-        <Services />
-        <CMS />
-        <Process />
-        <Reasons />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
+      <SmoothScroll>
+        <main>
+          <Hero />
+          <Marquee />
+          <Pillars />
+          <Services />
+          <CMS />
+          <Process />
+          <Reasons />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
+      </SmoothScroll>
     </>
   );
 }
